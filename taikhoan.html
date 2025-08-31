@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tài khoản</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif; margin: 0; padding: 0;
+      background: #f0f2f5;
+    }
+    header {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white; padding: 20px; text-align: center;
+    }
+    nav {
+      display: flex; justify-content: space-around;
+      background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav a {
+      flex: 1; text-align: center; padding: 15px;
+      text-decoration: none; color: #333; font-weight: bold;
+    }
+    nav a:hover { background: #eee; }
+    .container {
+      padding: 20px; max-width: 600px; margin: auto;
+    }
+    .card {
+      background: white; padding: 20px; margin-bottom: 20px;
+      border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .money {
+      font-size: 24px; font-weight: bold; color: green;
+    }
+    button {
+      background: linear-gradient(135deg, #27ae60, #219150);
+      color: white; border: none; padding: 10px 20px;
+      border-radius: 6px; cursor: pointer; font-size: 16px;
+    }
+    button:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>💳 Quản lý Tài khoản</h1>
+</header>
+
+<nav>
+  <a href="taikhoan.html">🏠 Tài khoản</a>
+  <a href="gachthe.html">📲 Gạch thẻ</a>
+  <a href="ruttien.html">💵 Rút tiền</a>
+  <a href="lichsu.html">📜 Lịch sử</a>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h2>Xin chào, <span id="username"></span></h2>
+    <p>Số dư hiện tại:</p>
+    <p class="money" id="balance">0 đ</p>
+    <button onclick="logout()">Đăng xuất</button>
+  </div>
+</div>
+
+<script>
+  if(!localStorage.getItem("user")){
+    window.location.href = "login.html";
+  } else {
+    document.getElementById("username").innerText = localStorage.getItem("user");
+  }
+
+  if(!localStorage.getItem("balance")){
+    localStorage.setItem("balance", "0");
+  }
+  document.getElementById("balance").innerText = Number(localStorage.getItem("balance")).toLocaleString() + " đ";
+
+  function logout(){
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+  }
+</script>
+</body>
+</html>
